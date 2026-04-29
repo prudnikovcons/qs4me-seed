@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://q.scqr.ru/schema/question.v2.schema.json",
+  "title": "Question (v2, Lovable/Supabase shape)",
+  "description": "Schema for a single seed question after target_count extraction and Lovable-shaped flattening.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "public_id",
+    "body",
+    "target_count",
+    "category_slug",
+    "taxonomy",
+    "synonyms",
+    "playlist_slugs"
+  ],
+  "properties": {
+    "public_id": {
+      "type": "string",
+      "pattern": "^qtx-\\d{4,}$"
+    },
+    "body": { "type": "string", "minLength": 10, "maxLength": 280 },
+    "target_count": { "type": "integer", "minimum": 1, "maximum": 100 },
+    "body_locale": { "type": "string", "default": "ru" },
+    "language_hint": { "type": "string", "default": "ru" },
+    "source": { "enum": ["seed", "user", "ai"] },
+    "visibility": { "enum": ["public", "private"] },
+    "moderation_state": { "enum": ["ok", "hidden", "review"] },
+    "status": { "enum": ["draft", "approved", "archived"] },
+    "category_slug": {
+      "enum": [
+        "morning", "memory", "work", "creative", "reflection",
+        "children", "social", "philosophy", "meta", "epistemology",
+        "modelling", "linguistics", "senses", "imagination", "absurd"
+      ]
+    },
+    "playlist_slugs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "synonyms": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 0
+    },
+    "hint_seeds_ru": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "frame_hint_ru": { "type": ["string", "null"] },
+    "taxonomy": {
+      "type": "object",
+      "properties": {
+        "primary_class": {
+          "enum": [
+            "retrieval", "descriptive", "classifying", "generative",
+            "clarifying", "analytical", "evaluative", "projecting",
+            "reflexive", "meta_generative"
+          ]
+        },
+        "purpose": { "type": "array", "items": { "type": "string" } },
+        "domains": { "type": "array", "items": { "type": "string" } },
+        "answer_form": { "type": "string" },
+        "openness": { "enum": ["closed", "semi_open", "open", "radically_open"] },
+        "complexity": { "enum": ["basic", "working", "developmental", "advanced", "limit"] },
+        "modes": { "type": "array", "items": { "type": "string" } },
+        "time_focus": { "type": "string" },
+        "subject_direction": { "type": "string" },
+        "abstraction_level": { "type": "string" },
+        "generativity_score": { "type": "integer", "minimum": 1, "maximum": 5 }
+      },
+      "additionalProperties": true
+    },
+    "editorial_flags": { "type": "array", "items": { "type": "string" } },
+    "editor_note": { "type": ["string", "null"] },
+    "is_featured": { "type": "boolean" },
+    "card_of_day_weight": { "type": "integer", "minimum": 0, "maximum": 10 },
+    "onboarding_safe": { "type": "boolean" },
+    "team_safe": { "type": "boolean" },
+    "search_index_text_ru": { "type": ["string", "null"] }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@q/seed-builder",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Build Lovable-shaped seed (categories, playlists, 1500 questions, seed.sql) from question-taxonomy.",
+  "scripts": {
+    "build": "node build.mjs",
+    "validate": "node validate.mjs"
+  }
+}

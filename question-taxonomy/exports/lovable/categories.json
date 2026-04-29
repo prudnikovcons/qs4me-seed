@@ -1,0 +1,167 @@
+[
+  {
+    "slug": "morning",
+    "name_ru": "Утро",
+    "name_en": "Morning",
+    "description_ru": "Мягкие вопросы для запуска дня, внимания и ритма.",
+    "description_en": "Gentle questions for starting the day, attention, and rhythm.",
+    "color": "sunrise",
+    "icon": "sun",
+    "sort": 10,
+    "is_system": true
+  },
+  {
+    "slug": "children",
+    "name_ru": "Дети",
+    "name_en": "Children",
+    "description_ru": "Вопросы и практики, подходящие для детского любопытства и совместного исследования.",
+    "description_en": "Questions and practices suitable for child curiosity and shared inquiry.",
+    "color": "mint",
+    "icon": "toy",
+    "sort": 20,
+    "is_system": true
+  },
+  {
+    "slug": "philosophy",
+    "name_ru": "Философия",
+    "name_en": "Philosophy",
+    "description_ru": "Вопросы о мышлении, границах понятий и самих вопросах.",
+    "description_en": "Questions about thinking, conceptual boundaries, and questions themselves.",
+    "color": "slate",
+    "icon": "compass",
+    "sort": 30,
+    "is_system": true
+  },
+  {
+    "slug": "work",
+    "name_ru": "Работа",
+    "name_en": "Work",
+    "description_ru": "Вопросы для команд, процессов, решений и рабочего контекста.",
+    "description_en": "Questions for teams, processes, decisions, and work contexts.",
+    "color": "cobalt",
+    "icon": "briefcase",
+    "sort": 40,
+    "is_system": true
+  },
+  {
+    "slug": "creative",
+    "name_ru": "Креатив",
+    "name_en": "Creative",
+    "description_ru": "Вопросы для сдвига, новых ходов и необычных форматов.",
+    "description_en": "Questions for breakthroughs, new moves, and unusual formats.",
+    "color": "coral",
+    "icon": "spark",
+    "sort": 50,
+    "is_system": true
+  },
+  {
+    "slug": "memory",
+    "name_ru": "Память",
+    "name_en": "Memory",
+    "description_ru": "Вопросы для извлечения, оживления и перестройки памяти.",
+    "description_en": "Questions for retrieval, reactivation, and reshaping memory.",
+    "color": "amber",
+    "icon": "archive",
+    "sort": 60,
+    "is_system": true
+  },
+  {
+    "slug": "reflection",
+    "name_ru": "Рефлексия",
+    "name_en": "Reflection",
+    "description_ru": "Вопросы для самоанализа, наблюдения за собой и глубоких внутренних сдвигов.",
+    "description_en": "Questions for self-analysis, self-observation, and deep internal shifts.",
+    "color": "plum",
+    "icon": "mirror",
+    "sort": 70,
+    "is_system": true
+  },
+  {
+    "slug": "meta",
+    "name_ru": "Мета",
+    "name_en": "Meta",
+    "description_ru": "Вопросы о вопросах — их форме, силе и слепых пятнах.",
+    "description_en": "Questions about questions — their form, power, and blind spots.",
+    "color": "violet",
+    "icon": "loop",
+    "sort": 80,
+    "is_system": true
+  },
+  {
+    "slug": "epistemology",
+    "name_ru": "Эпистемология",
+    "name_en": "Epistemology",
+    "description_ru": "Что значит знать, проверять, ошибаться и менять мнение.",
+    "description_en": "What it means to know, verify, err, and update belief.",
+    "color": "indigo",
+    "icon": "magnifier",
+    "sort": 90,
+    "is_system": true
+  },
+  {
+    "slug": "modelling",
+    "name_ru": "Моделирование",
+    "name_en": "Modelling",
+    "description_ru": "Карты, аналогии, упрощения — и где они начинают врать.",
+    "description_en": "Maps, analogies, simplifications — and where they start to lie.",
+    "color": "teal",
+    "icon": "cube",
+    "sort": 100,
+    "is_system": true
+  },
+  {
+    "slug": "linguistics",
+    "name_ru": "Язык",
+    "name_en": "Linguistics",
+    "description_ru": "Как формы языка формируют то, что мы способны заметить.",
+    "description_en": "How language shapes what we are able to notice.",
+    "color": "rose",
+    "icon": "speech",
+    "sort": 110,
+    "is_system": true
+  },
+  {
+    "slug": "senses",
+    "name_ru": "Чувства",
+    "name_en": "Senses",
+    "description_ru": "Восприятие, иллюзии и калибровка органов чувств.",
+    "description_en": "Perception, illusions, and the calibration of the senses.",
+    "color": "blossom",
+    "icon": "eye",
+    "sort": 120,
+    "is_system": true
+  },
+  {
+    "slug": "social",
+    "name_ru": "Социальное",
+    "name_en": "Social",
+    "description_ru": "Связь, разговор, внимание других — как зеркало мышления.",
+    "description_en": "Connection, conversation, the attention of others as a mirror for thinking.",
+    "color": "ocean",
+    "icon": "people",
+    "sort": 130,
+    "is_system": true
+  },
+  {
+    "slug": "imagination",
+    "name_ru": "Воображение",
+    "name_en": "Imagination",
+    "description_ru": "Условные миры, мысленные эксперименты, «что если».",
+    "description_en": "Counterfactual worlds, thought experiments, what-ifs.",
+    "color": "lilac",
+    "icon": "spark",
+    "sort": 140,
+    "is_system": true
+  },
+  {
+    "slug": "absurd",
+    "name_ru": "Абсурд",
+    "name_en": "Absurd",
+    "description_ru": "Парадоксы, коаны и точки, где смысл сам себя ловит.",
+    "description_en": "Paradoxes, koans, points where meaning catches itself.",
+    "color": "coral",
+    "icon": "infinity",
+    "sort": 150,
+    "is_system": true
+  }
+]

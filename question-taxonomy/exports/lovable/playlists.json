@@ -1,0 +1,172 @@
+[
+  {
+    "slug": "morning_reset",
+    "category_slug": "morning",
+    "name_ru": "Утренний запуск",
+    "name_en": "Morning Reset",
+    "description_ru": "Короткие вопросы для мягкого входа в день.",
+    "description_en": "Short questions for a soft entry into the day.",
+    "visibility": "public",
+    "is_system": true
+  },
+  {
+    "slug": "memory_sparks",
+    "category_slug": "memory",
+    "name_ru": "Искры памяти",
+    "name_en": "Memory Sparks",
+    "description_ru": "Вопросы, которые быстро поднимают воспоминания и ассоциации.",
+    "description_en": "Questions that quickly surface memories and associations.",
+    "visibility": "public",
+    "is_system": true
+  },
+  {
+    "slug": "reflection_loop",
+    "category_slug": "reflection",
+    "name_ru": "Контур рефлексии",
+    "name_en": "Reflection Loop",
+    "description_ru": "Вопросы для регулярной честной сверки с собой.",
+    "description_en": "Questions for regular honest self-checks.",
+    "visibility": "public",
+    "is_system": true
+  },
+  {
+    "slug": "deep_session_entry",
+    "category_slug": "reflection",
+    "name_ru": "Вход в глубокую сессию",
+    "name_en": "Deep Session Entry",
+    "description_ru": "Вопросы для долгой и серьезной внутренней работы.",
+    "description_en": "Questions for long-form and serious inner work.",
+    "visibility": "public",
+    "is_system": true
+  },
+  {
+    "slug": "team_safe_openers",
+    "category_slug": "work",
+    "name_ru": "Мягкий старт для команды",
+    "name_en": "Team-Safe Openers",
+    "description_ru": "Вопросы, которые можно использовать в группе без лишнего давления.",
+    "description_en": "Questions that can be used in a group without unnecessary pressure.",
+    "visibility": "public",
+    "is_system": true
+  },
+  {
+    "slug": "work_clarity",
+    "category_slug": "work",
+    "name_ru": "Рабочая ясность",
+    "name_en": "Work Clarity",
+    "description_ru": "Вопросы для процессов, решений, модерации и организационного дизайна.",
+    "description_en": "Questions for processes, decisions, moderation, and organizational design.",
+    "visibility": "public",
+    "is_system": true
+  },
+  {
+    "slug": "creative_breakout",
+    "category_slug": "creative",
+    "name_ru": "Креативный сдвиг",
+    "name_en": "Creative Breakout",
+    "description_ru": "Вопросы для нового угла зрения, форматов и упражнений.",
+    "description_en": "Questions for new angles, formats, and exercises.",
+    "visibility": "public",
+    "is_system": true
+  },
+  {
+    "slug": "children_curiosity",
+    "category_slug": "children",
+    "name_ru": "Детское любопытство",
+    "name_en": "Child Curiosity",
+    "description_ru": "Вопросы и практики, которые хорошо работают с детским исследованием.",
+    "description_en": "Questions and practices that work well with child-led inquiry.",
+    "visibility": "public",
+    "is_system": true
+  },
+  {
+    "slug": "question_about_questions",
+    "category_slug": "philosophy",
+    "name_ru": "Вопросы о вопросах",
+    "name_en": "Questions About Questions",
+    "description_ru": "Метавопросы, границы понятий и механика хорошего вопроса.",
+    "description_en": "Meta-questions, conceptual boundaries, and the mechanics of a good question.",
+    "visibility": "public",
+    "is_system": true
+  },
+  {
+    "slug": "meta_questions",
+    "category_slug": "meta",
+    "name_ru": "Метавопросы",
+    "name_en": "Meta-Questions",
+    "description_ru": "Вопросы о природе самих вопросов и о том, как их задавать.",
+    "description_en": "Questions about the nature of questions and how to ask them well.",
+    "visibility": "public",
+    "is_system": true
+  },
+  {
+    "slug": "epistemology_deep",
+    "category_slug": "epistemology",
+    "name_ru": "Эпистемологическое погружение",
+    "name_en": "Epistemology Deep",
+    "description_ru": "Вопросы о знании, доказательстве, заблуждении и обновлении убеждений.",
+    "description_en": "Questions about knowledge, evidence, error, and updating beliefs.",
+    "visibility": "public",
+    "is_system": true
+  },
+  {
+    "slug": "systems_thinking",
+    "category_slug": "modelling",
+    "name_ru": "Системное мышление",
+    "name_en": "Systems Thinking",
+    "description_ru": "Вопросы о картах, моделях, допущениях и границах систем.",
+    "description_en": "Questions about maps, models, assumptions, and the limits of systems.",
+    "visibility": "public",
+    "is_system": true
+  },
+  {
+    "slug": "language_lens",
+    "category_slug": "linguistics",
+    "name_ru": "Линза языка",
+    "name_en": "Language Lens",
+    "description_ru": "Вопросы о том, как слова и грамматика определяют горизонты мышления.",
+    "description_en": "Questions about how words and grammar shape the horizon of thought.",
+    "visibility": "public",
+    "is_system": true
+  },
+  {
+    "slug": "sensory_sharpening",
+    "category_slug": "senses",
+    "name_ru": "Настройка восприятия",
+    "name_en": "Sensory Sharpening",
+    "description_ru": "Вопросы о восприятии, иллюзиях и точности органов чувств.",
+    "description_en": "Questions about perception, illusions, and the precision of the senses.",
+    "visibility": "public",
+    "is_system": true
+  },
+  {
+    "slug": "social_mirror",
+    "category_slug": "social",
+    "name_ru": "Социальное зеркало",
+    "name_en": "Social Mirror",
+    "description_ru": "Вопросы о том, как другие люди отражают и меняют наше мышление.",
+    "description_en": "Questions about how other people reflect and reshape our thinking.",
+    "visibility": "public",
+    "is_system": true
+  },
+  {
+    "slug": "thought_experiments",
+    "category_slug": "imagination",
+    "name_ru": "Мысленные эксперименты",
+    "name_en": "Thought Experiments",
+    "description_ru": "Вопросы для воображаемых сценариев, контрфактических миров и «что если».",
+    "description_en": "Questions for imagined scenarios, counterfactual worlds, and what-ifs.",
+    "visibility": "public",
+    "is_system": true
+  },
+  {
+    "slug": "paradox_lab",
+    "category_slug": "absurd",
+    "name_ru": "Лаборатория абсурда",
+    "name_en": "Paradox Lab",
+    "description_ru": "Парадоксы, коаны и вопросы, где смысл начинает ловить себя за хвост.",
+    "description_en": "Paradoxes, koans, and questions where meaning starts to catch its own tail.",
+    "visibility": "public",
+    "is_system": true
+  }
+]
