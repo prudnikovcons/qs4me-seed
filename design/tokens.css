@@ -1,0 +1,192 @@
+/* qs4.me — design tokens */
+
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,420;6..72,500;6..72,600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=EB+Garamond:wght@400;500;600&family=Inter+Tight:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Light theme — warm paper */
+  --bg:        oklch(0.98 0.008 80);
+  --bg-card:   oklch(0.99 0.005 80);
+  --ink:       oklch(0.22 0.02 250);
+  --ink-soft:  oklch(0.45 0.02 250);
+  --hint:      oklch(0.62 0.02 250);
+  --divider:   oklch(0.92 0.01 80);
+  --ring:      oklch(0.88 0.01 80);
+
+  /* Per-category accents */
+  --acc-morning:      oklch(0.78 0.13 60);
+  --acc-memory:       oklch(0.76 0.12 75);
+  --acc-work:         oklch(0.55 0.13 250);
+  --acc-creative:     oklch(0.72 0.16 30);
+  --acc-reflection:   oklch(0.50 0.10 320);
+  --acc-children:     oklch(0.78 0.10 160);
+  --acc-social:       oklch(0.60 0.11 220);
+  --acc-philosophy:   oklch(0.55 0.04 250);
+  --acc-meta:         oklch(0.55 0.13 290);
+  --acc-epistemology: oklch(0.50 0.13 270);
+  --acc-modelling:    oklch(0.62 0.10 195);
+  --acc-linguistics:  oklch(0.70 0.13 10);
+  --acc-senses:       oklch(0.78 0.10 350);
+  --acc-imagination:  oklch(0.72 0.10 300);
+  --acc-absurd:       oklch(0.65 0.18 20);
+
+  /* Soft backgrounds (chip ghost) — same hue, very low chroma, near-paper L */
+  --acc-morning-bg:      oklch(0.95 0.04 60);
+  --acc-memory-bg:       oklch(0.95 0.04 75);
+  --acc-work-bg:         oklch(0.94 0.03 250);
+  --acc-creative-bg:     oklch(0.94 0.05 30);
+  --acc-reflection-bg:   oklch(0.94 0.03 320);
+  --acc-children-bg:     oklch(0.95 0.03 160);
+  --acc-social-bg:       oklch(0.94 0.03 220);
+  --acc-philosophy-bg:   oklch(0.94 0.015 250);
+  --acc-meta-bg:         oklch(0.94 0.04 290);
+  --acc-epistemology-bg: oklch(0.93 0.04 270);
+  --acc-modelling-bg:    oklch(0.94 0.03 195);
+  --acc-linguistics-bg:  oklch(0.94 0.04 10);
+  --acc-senses-bg:       oklch(0.95 0.03 350);
+  --acc-imagination-bg:  oklch(0.94 0.03 300);
+  --acc-absurd-bg:       oklch(0.94 0.05 20);
+
+  /* Type */
+  --serif: 'Newsreader', 'Source Serif 4', Georgia, serif;
+  --sans:  'Inter Tight', system-ui, sans-serif;
+  --mono:  'JetBrains Mono', ui-monospace, monospace;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* Radii */
+  --r-chip: 4px;
+  --r-card: 8px;
+  --r-button: 10px;
+  --r-pill: 9999px;
+
+  /* Motion */
+  --easing: cubic-bezier(0.2, 0, 0, 1);
+}
+
+[data-theme="dark"] {
+  --bg:       oklch(0.18 0.01 250);
+  --bg-card:  oklch(0.22 0.01 250);
+  --ink:      oklch(0.95 0.01 80);
+  --ink-soft: oklch(0.70 0.01 80);
+  --hint:     oklch(0.55 0.01 80);
+  --divider:  oklch(0.30 0.01 250);
+  --ring:    oklch(0.32 0.01 250);
+
+  /* Slightly lifted chip backgrounds for dark */
+  --acc-morning-bg:      oklch(0.30 0.04 60);
+  --acc-memory-bg:       oklch(0.30 0.04 75);
+  --acc-work-bg:         oklch(0.28 0.05 250);
+  --acc-creative-bg:     oklch(0.30 0.06 30);
+  --acc-reflection-bg:   oklch(0.28 0.04 320);
+  --acc-children-bg:     oklch(0.30 0.04 160);
+  --acc-social-bg:       oklch(0.28 0.04 220);
+  --acc-philosophy-bg:   oklch(0.28 0.02 250);
+  --acc-meta-bg:         oklch(0.30 0.05 290);
+  --acc-epistemology-bg: oklch(0.28 0.05 270);
+  --acc-modelling-bg:    oklch(0.30 0.04 195);
+  --acc-linguistics-bg:  oklch(0.30 0.05 10);
+  --acc-senses-bg:       oklch(0.30 0.04 350);
+  --acc-imagination-bg:  oklch(0.30 0.04 300);
+  --acc-absurd-bg:       oklch(0.30 0.06 20);
+}
+
+/* Reset-ish */
+*, *::before, *::after { box-sizing: border-box; }
+
+.qs-screen {
+  width: 100%; height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-feature-settings: 'tnum' 0, 'ss01' 1;
+  -webkit-font-smoothing: antialiased;
+  display: flex; flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* serif body */
+.qs-serif {
+  font-family: var(--serif);
+  font-weight: 420;
+  letter-spacing: -0.005em;
+  text-wrap: pretty;
+}
+
+/* tabular numerals */
+.qs-tnum { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' 1; }
+
+/* hairline divider */
+.qs-hairline { background: var(--divider); height: 1px; width: 100%; }
+
+/* chips */
+.qs-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 22px; padding: 0 8px;
+  border-radius: var(--r-chip);
+  font-family: var(--sans);
+  font-size: 11.5px; font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+/* round count buttons */
+.qs-round {
+  width: 56px; height: 56px;
+  border-radius: var(--r-pill);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--sans);
+  font-weight: 500;
+  user-select: none;
+  cursor: pointer;
+  transition: transform 80ms var(--easing), opacity 80ms var(--easing);
+}
+.qs-round:active { transform: scale(0.96); opacity: 0.85; }
+
+.qs-round-fill {
+  background: var(--ink); color: var(--bg);
+}
+.qs-round-ghost {
+  background: transparent; color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--divider);
+}
+
+/* primary button */
+.qs-primary {
+  width: 100%; height: 48px;
+  border-radius: var(--r-button);
+  background: var(--ink); color: var(--bg);
+  font-family: var(--sans);
+  font-weight: 500; font-size: 15px;
+  letter-spacing: 0.01em;
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: opacity 120ms var(--easing);
+}
+.qs-primary[disabled] { opacity: 0.28; pointer-events: none; }
+
+/* draw-in animation for completion line */
+@keyframes qs-draw-in {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* skeleton pulse — serif gray block */
+@keyframes qs-pulse {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 0.85; }
+}
+
+.qs-skel {
+  background: var(--divider);
+  border-radius: 2px;
+  animation: qs-pulse 1.6s var(--easing) infinite;
+}

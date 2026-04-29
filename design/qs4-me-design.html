@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>qs4.me — design</title>
+<link rel="stylesheet" href="tokens.css"/>
+<style>
+  html, body { margin: 0; padding: 0; background: #efeae0; }
+  body { font-family: 'Inter Tight', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  /* The canvas component sets its own bg; this is a fallback for first paint */
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<!-- React + Babel -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<!-- Building blocks -->
+<script type="text/babel" src="ios-frame.jsx"></script>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="qs-components.jsx"></script>
+<script type="text/babel" src="qs-screens.jsx"></script>
+
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "theme": "light",
+  "serif": "Newsreader",
+  "heroCategory": "morning",
+  "heroState": "counting"
+}/*EDITMODE-END*/;
+
+function App() {
+  const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const dark = tweaks.theme === 'dark';
+
+  // Override Newsreader default with the user's pick
+  React.useEffect(() => {
+    document.documentElement.style.setProperty('--serif',
+      `'${tweaks.serif}', 'Newsreader', Georgia, serif`);
+  }, [tweaks.serif]);
+
+  // Hero card variants for the Tweaks panel
+  let heroProps;
+  switch (tweaks.heroState) {
+    case 'idle':     heroProps = { count: 0,  state: 'idle' }; break;
+    case 'counting': heroProps = { count: 3,  state: 'counting' }; break;
+    case 'done':     heroProps = { count: 10, state: 'done', showAddMore: true }; break;
+    case 'hint':     heroProps = { count: 3,  state: 'hint' }; break;
+    default:         heroProps = { count: 3,  state: 'counting' };
+  }
+
+  return (
+    <>
+      <DesignCanvas title="qs4.me" subtitle="Russian-first question practice · мобильно, тихо, по делу">
+        <DCSection id="feed-states" title="01 · Лента — состояния QuestionCard"
+          description="Один вопрос на экран. Все пять состояний main hero: idle, counting, hint open, completed, dark.">
+          <DCArtboard id="feed-idle" label="a. idle" width={390} height={844}>
+            <FeedScreen q="morning_hero" count={0} state="idle"/>
+          </DCArtboard>
+          <DCArtboard id="feed-counting" label="b. counting · 3 / 10" width={390} height={844}>
+            <FeedScreen q="morning_hero" count={3} state="counting"/>
+          </DCArtboard>
+          <DCArtboard id="feed-hint" label="d. hint slot open" width={390} height={844}>
+            <FeedScreen q="morning_hero" count={3} state="hint"/>
+          </DCArtboard>
+          <DCArtboard id="feed-done" label="c. completed · 10 / 10" width={390} height={844}>
+            <FeedScreen q="morning_hero" count={10} state="done" showAddMore={true}/>
+          </DCArtboard>
+          <DCArtboard id="feed-dark" label="e. dark · idle" width={390} height={844}>
+            <FeedScreen q="morning_hero" count={0} state="idle" dark={true}/>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="categories" title="02 · Лента — другие категории"
+          description="Один и тот же шаблон, разные акценты. Цвет тонкий, не заливает.">
+          <DCArtboard id="reflection" label="reflection · plum" width={390} height={844}>
+            <FeedScreen q="reflection" count={2} state="counting"/>
+          </DCArtboard>
+          <DCArtboard id="creative" label="creative · coral" width={390} height={844}>
+            <FeedScreen q="creative" count={5} state="counting"/>
+          </DCArtboard>
+          <DCArtboard id="memory" label="memory · amber" width={390} height={844}>
+            <FeedScreen q="memory" count={1} state="counting"/>
+          </DCArtboard>
+          <DCArtboard id="philosophy" label="philosophy · slate" width={390} height={844}>
+            <FeedScreen q="philosophy" count={0} state="idle"/>
+          </DCArtboard>
+          <DCArtboard id="imagination" label="imagination · lilac" width={390} height={844}>
+            <FeedScreen q="imagination" count={4} state="counting"/>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="screens" title="03 · Остальные экраны"
+          description="Библиотека, сохранённое (с пустым состоянием), профиль, новый вопрос, вход.">
+          <DCArtboard id="library" label="/library" width={390} height={844}>
+            <LibraryScreen/>
+          </DCArtboard>
+          <DCArtboard id="saved" label="/saved" width={390} height={844}>
+            <SavedScreen/>
+          </DCArtboard>
+          <DCArtboard id="saved-empty" label="/saved · empty" width={390} height={844}>
+            <SavedScreen empty={true}/>
+          </DCArtboard>
+          <DCArtboard id="me" label="/me · stats" width={390} height={844}>
+            <MeScreen name="Аня"/>
+          </DCArtboard>
+          <DCArtboard id="new" label="/questions/new" width={390} height={844}>
+            <NewQuestionScreen/>
+          </DCArtboard>
+          <DCArtboard id="auth" label="/auth" width={390} height={844}>
+            <AuthScreen/>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="onboarding" title="04 · Первый запуск"
+          description="Три карточки. Первый экран — реальный счётный вопрос (3, не 10), не маркетинг.">
+          <DCArtboard id="ob1" label="01 · считает сам" width={390} height={844}>
+            <OnboardingScreen step={1}/>
+          </DCArtboard>
+          <DCArtboard id="ob2" label="02 · так и работает" width={390} height={844}>
+            <OnboardingScreen step={2}/>
+          </DCArtboard>
+          <DCArtboard id="ob3" label="03 · иначе и подсказка" width={390} height={844}>
+            <OnboardingScreen step={3}/>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="overlays" title="05 · Bottom-sheet · фильтр"
+          description="Фильтрация — снизу, не сверху. Никаких табов на ленте.">
+          <DCArtboard id="filter" label="filter sheet" width={390} height={844}>
+            <FilterSheetScreen/>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="tweakable" title="06 · Hero (живой)"
+          description="Эта карточка слушает Tweaks справа. Поменяй тему, сериф, акцент или состояние.">
+          <DCArtboard id="hero-live" label="live · QuestionCard" width={390} height={844}>
+            <FeedScreen
+              q="morning_hero"
+              dark={dark}
+              category={tweaks.heroCategory}
+              serif={tweaks.serif}
+              {...heroProps}
+            />
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="tokens" title="07 · Заметка о палитре"
+          description="Один акцент на категорию. Не заливай весь экран — только chip и тонкая полоска.">
+          <DCArtboard id="palette" label="палитра — по категориям" width={1180} height={420}>
+            <PaletteCard/>
+          </DCArtboard>
+          <DCArtboard id="type" label="типографика" width={780} height={420}>
+            <TypeCard/>
+          </DCArtboard>
+        </DCSection>
+      </DesignCanvas>
+
+      <TweaksPanel title="Tweaks">
+        <TweakSection label="Тема">
+          <TweakRadio
+            value={tweaks.theme}
+            onChange={v => setTweak('theme', v)}
+            options={[
+              { value: 'light', label: 'Light' },
+              { value: 'dark',  label: 'Dark' },
+            ]}/>
+        </TweakSection>
+        <TweakSection label="Серифный шрифт вопроса">
+          <TweakSelect
+            value={tweaks.serif}
+            onChange={v => setTweak('serif', v)}
+            options={[
+              { value: 'Newsreader',      label: 'Newsreader (по умолчанию)' },
+              { value: 'Source Serif 4',  label: 'Source Serif 4' },
+              { value: 'EB Garamond',     label: 'EB Garamond' },
+            ]}/>
+        </TweakSection>
+        <TweakSection label="Категория hero-карточки">
+          <TweakSelect
+            value={tweaks.heroCategory}
+            onChange={v => setTweak('heroCategory', v)}
+            options={[
+              { value: 'morning',      label: 'утро · sunrise' },
+              { value: 'memory',       label: 'память · amber' },
+              { value: 'work',         label: 'работа · cobalt' },
+              { value: 'creative',     label: 'творчество · coral' },
+              { value: 'reflection',   label: 'рефлексия · plum' },
+              { value: 'children',     label: 'дети · mint' },
+              { value: 'social',       label: 'социум · ocean' },
+              { value: 'philosophy',   label: 'философия · slate' },
+              { value: 'meta',         label: 'мета · violet' },
+              { value: 'epistemology', label: 'эпистемика · indigo' },
+              { value: 'modelling',    label: 'моделирование · teal' },
+              { value: 'linguistics',  label: 'язык · rose' },
+              { value: 'senses',       label: 'чувства · blossom' },
+              { value: 'imagination',  label: 'воображение · lilac' },
+              { value: 'absurd',       label: 'абсурд · coral-2' },
+            ]}/>
+        </TweakSection>
+        <TweakSection label="Состояние карточки">
+          <TweakRadio
+            value={tweaks.heroState}
+            onChange={v => setTweak('heroState', v)}
+            options={[
+              { value: 'idle',     label: 'idle' },
+              { value: 'counting', label: 'count' },
+              { value: 'hint',     label: 'hint' },
+              { value: 'done',     label: 'done' },
+            ]}/>
+        </TweakSection>
+      </TweaksPanel>
+    </>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────
+// Palette / Type "tokens" cards
+// ─────────────────────────────────────────────────────────────
+function PaletteCard() {
+  const cats = Object.keys(CATEGORIES);
+  return (
+    <div className="qs-screen" style={{ padding: '32px 36px', overflow: 'auto' }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 24 }}>
+        <div>
+          <div className="qs-serif" style={{ fontSize: 22, color: 'var(--ink)', fontWeight: 500 }}>Палитра по категориям</div>
+          <div style={{ fontFamily: 'var(--sans)', fontSize: 12.5, color: 'var(--ink-soft)', marginTop: 4 }}>
+            Один тон на категорию. Используется только для chip и тонкой 2px-полоски прогресса. Никогда — как заливка.
+          </div>
+        </div>
+        <div style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--hint)' }}>oklch</div>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 14 }}>
+        {cats.map(c => (
+          <div key={c} style={{
+            display: 'flex', flexDirection: 'column', gap: 6,
+            padding: 12, borderRadius: 'var(--r-card)',
+            background: 'var(--bg-card)', border: '1px solid var(--divider)',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <span style={{ width: 14, height: 14, borderRadius: 3, background: `var(--acc-${c})` }}/>
+              <span className="qs-serif" style={{ fontSize: 14, color: 'var(--ink)' }}>{CATEGORIES[c].ru}</span>
+            </div>
+            <div style={{ fontFamily: 'var(--mono)', fontSize: 10.5, color: 'var(--hint)' }}>
+              {CATEGORIES[c].tone}
+            </div>
+            <CategoryChip category={c}/>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function TypeCard() {
+  return (
+    <div className="qs-screen" style={{ padding: '32px 36px', overflow: 'auto' }}>
+      <div className="qs-serif" style={{ fontSize: 22, color: 'var(--ink)', fontWeight: 500, marginBottom: 4 }}>
+        Типографика
+      </div>
+      <div style={{ fontFamily: 'var(--sans)', fontSize: 12.5, color: 'var(--ink-soft)', marginBottom: 22 }}>
+        Заголовок — серый сериф (Newsreader 420). UI — Inter Tight 450/500. Tabular nums везде на счётчике.
+      </div>
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+        <Stack label="Question · Newsreader 28 / 1.25 / 420">
+          <div style={{ fontFamily: "'Newsreader', serif", fontSize: 28, lineHeight: 1.25, fontWeight: 420, color: 'var(--ink)', textWrap: 'balance' }}>
+            Назови десять вещей, которые ты замечаешь только утром.
+          </div>
+        </Stack>
+        <Stack label="Counter · Inter Tight 48 · tnum">
+          <div className="qs-tnum" style={{ fontFamily: 'var(--sans)', fontSize: 48, fontWeight: 450, lineHeight: 1, letterSpacing: '-0.02em' }}>
+            03 <span style={{ color: 'var(--hint)' }}>/</span> <span style={{ color: 'var(--ink-soft)' }}>10</span>
+          </div>
+        </Stack>
+        <Stack label="Chip · Inter Tight 11.5 / 500">
+          <div style={{ display: 'flex', gap: 6 }}>
+            <CategoryChip category="morning"/>
+            <ComplexityPill level={2}/>
+          </div>
+        </Stack>
+        <Stack label="Hint · Newsreader italic 15.5">
+          <div style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 15.5, color: 'var(--ink-soft)' }}>
+            попробуй идти по чувствам — что слышно, что пахнет, что ещё не проснулось.
+          </div>
+        </Stack>
+      </div>
+    </div>
+  );
+}
+
+function Stack({ label, children }) {
+  return (
+    <div style={{ borderTop: '1px solid var(--divider)', paddingTop: 12 }}>
+      <div style={{
+        fontFamily: 'var(--mono)', fontSize: 10.5, color: 'var(--hint)',
+        marginBottom: 10, letterSpacing: '0.02em',
+      }}>{label}</div>
+      {children}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

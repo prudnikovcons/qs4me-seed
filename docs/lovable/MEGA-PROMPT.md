@@ -4,22 +4,25 @@
 
 ---
 
-## Перед стартом (5 минут)
+## Перед стартом
 
-**Шаг 1.** Запушь этот репо на GitHub (или создай публичный gist), чтобы у `seed.sql` и `questions.v2.json` появились raw-URL'ы. Подойдёт любой публичный URL, главное — прямая ссылка на сырой файл. После пуша сохрани два URL:
+Всё уже опубликовано. Репо: https://github.com/prudnikovcons/qs4me-seed
+
+В промте ниже все ссылки на сид и дизайн уже подставлены:
 
 ```
-SEED_SQL_URL    = https://raw.githubusercontent.com/prudnikovcons/qs4me-seed/main/question-taxonomy/exports/lovable/seed.sql
-QUESTIONS_URL   = https://raw.githubusercontent.com/prudnikovcons/qs4me-seed/main/question-taxonomy/exports/lovable/questions.v2.json
-CATEGORIES_URL  = https://raw.githubusercontent.com/prudnikovcons/qs4me-seed/main/question-taxonomy/exports/lovable/categories.json
-PLAYLISTS_URL   = https://raw.githubusercontent.com/prudnikovcons/qs4me-seed/main/question-taxonomy/exports/lovable/playlists.json
+SEED_SQL_URL    = …/question-taxonomy/exports/lovable/seed.sql
+QUESTIONS_URL   = …/question-taxonomy/exports/lovable/questions.v2.json
+CATEGORIES_URL  = …/question-taxonomy/exports/lovable/categories.json
+PLAYLISTS_URL   = …/question-taxonomy/exports/lovable/playlists.json
+TOKENS_CSS_URL  = …/design/tokens.css
+DESIGN_COMPS    = …/design/qs-components.jsx
+DESIGN_SCREENS  = …/design/qs-screens.jsx
 ```
 
-**Шаг 2.** Создай новый Lovable-проект. Включи **Lovable Cloud** (или подключи Supabase).
-
-**Шаг 3.** Замени два плейсхолдера в промте ниже на свои URL'ы (`<SEED_SQL_URL>`, `<QUESTIONS_URL>`).
-
-> **Уже сделано.** Репо опубликован на https://github.com/prudnikovcons/qs4me-seed, ссылки внутри промта подставлены ниже.
+Тебе остаётся:
+1. Создать новый Lovable-проект, включить **Lovable Cloud** (или подключить Supabase).
+2. Скопировать всё между `=== START ===` и `=== END ===` ниже и вставить одним сообщением в чат Lovable.
 
 После этого вставь весь блок ниже одним сообщением.
 
@@ -41,6 +44,13 @@ react-router. Backend = Supabase / Lovable Cloud. RU-first.
 NO info blocks, NO marketing landing, NO article portal, NO answer-text 
 storage. Public social content is questions only. Counters store metrics, 
 not answer text. Privacy beats engagement.
+
+**The visual system is already designed.** See section 9. Do NOT improvise 
+or fall back to shadcn defaults. Fetch `design/tokens.css`, 
+`design/qs-components.jsx`, and `design/qs-screens.jsx` from the seed 
+repo and adopt them as authoritative. The shadcn primitives are still 
+fine for things not covered there (Dialog, Sheet, Toast, Popover) — but 
+restyled with the same tokens.
 
 # 1. Database (Supabase)
 
@@ -389,48 +399,64 @@ Reports for questions and comments. `/admin/moderation` (role gated):
 list reports, hide/restore content. Hidden rows disappear from public 
 feed within one swipe.
 
-# 9. Visual system
+# 9. Visual system — adopt from the design reference
 
-## Typography
-- Question body: humanist serif (Source Serif 4 or Newsreader), 26-32px 
-  on mobile, weight 420-500, line-height 1.25. Tabular numerals.
-- UI: Inter Tight or Geist Sans.
-- Russian-aware: ё, long-dash —, « » quotes.
+The visual system is **already designed** in detail. DO NOT improvise 
+shadcn/ui defaults. DO NOT regenerate tokens from scratch. Fetch and 
+adopt these files:
 
-## Color (light)
-- bg: oklch(0.98 0.008 80) /* warm paper */
-- bg-card: oklch(0.99 0.005 80)
-- ink: oklch(0.22 0.02 250)
-- ink-soft: oklch(0.45 0.02 250)
-- hint: oklch(0.62 0.02 250)
-- divider: oklch(0.92 0.01 80)
+- tokens (CSS custom properties, fonts, utility classes — drop verbatim 
+  into `src/index.css`):
+  https://raw.githubusercontent.com/prudnikovcons/qs4me-seed/main/design/tokens.css
 
-## Color (dark)
-- bg: oklch(0.18 0.01 250) /* warm charcoal, never pure black */
-- bg-card: oklch(0.22 0.01 250)
-- ink: oklch(0.95 0.01 80)
+- component reference (CategoryChip, ComplexityPill, TeamSafeChip, 
+  HintSlot, PracticeCounter, QuestionCard, LibraryTile, PlaylistRow, 
+  StatTile, StreakStrip, BottomNav, BrandMark, Icon, plus `CATEGORIES` 
+  and `COMPLEXITY` constants):
+  https://raw.githubusercontent.com/prudnikovcons/qs4me-seed/main/design/qs-components.jsx
 
-## Per-category accent (use ONLY for category chip + counter progress, 
-never as a giant fill)
+- screen reference (FeedScreen, LibraryScreen, SavedScreen, MeScreen, 
+  NewQuestionScreen, AuthScreen, OnboardingScreen, FilterSheetScreen):
+  https://raw.githubusercontent.com/prudnikovcons/qs4me-seed/main/design/qs-screens.jsx
 
-morning sunrise oklch(0.78 0.13 60); memory amber oklch(0.76 0.12 75); 
-work cobalt oklch(0.55 0.13 250); creative coral oklch(0.72 0.16 30); 
-reflection plum oklch(0.50 0.10 320); children mint oklch(0.78 0.10 160); 
-social ocean oklch(0.60 0.11 220); philosophy slate oklch(0.55 0.04 250); 
-meta violet oklch(0.55 0.13 290); epistemology indigo oklch(0.50 0.13 270); 
-modelling teal oklch(0.62 0.10 195); linguistics rose oklch(0.70 0.13 10); 
-senses blossom oklch(0.78 0.10 350); imagination lilac oklch(0.72 0.10 300); 
-absurd coral-2 oklch(0.65 0.18 20).
+- adoption guide:
+  https://raw.githubusercontent.com/prudnikovcons/qs4me-seed/main/design/README.md
 
-## Shape & motion
-- Border-radius 6-10px max. NO oversized squircles. NO rounded-full on 
-  large surfaces (only +/- buttons and small chips).
-- Cards: NO drop shadow. Use 1px hairline divider + 1px inner ring.
-- Generous whitespace. Question body has ≥32px breathing room.
-- Single column at all viewports. Desktop = max-w-[480px].
-- Motion: scroll snap is the only transition. Counter buttons: 80ms 
-  scale 0.96. On completion: 300ms cardline draw in accent color, ONCE. 
-  HintSlot opens 200ms height tween. NO springs, NO confetti, NO sounds.
+How to adopt:
+
+1. **Tokens.** Copy `tokens.css` into `src/index.css` (replacing 
+   shadcn defaults). Keep the `@import url('https://fonts.googleapis.com/...')` 
+   line — fonts are Newsreader (serif), Inter Tight (sans), 
+   JetBrains Mono (mono).
+2. **Class names.** The CSS exposes utility classes the components 
+   depend on: `qs-screen`, `qs-serif`, `qs-tnum`, `qs-hairline`, 
+   `qs-chip`, `qs-round`, `qs-round-fill`, `qs-round-ghost`, 
+   `qs-primary`, `qs-skel`. Keep them — don't translate to Tailwind 
+   utilities, the design depends on them.
+3. **Per-category color.** Resolved at runtime via 
+   `var(--acc-${category})` and `var(--acc-${category}-bg)`. NEVER 
+   translate to a Tailwind theme color list — the runtime lookup is 
+   intentional.
+4. **Components.** Port the JSX from `qs-components.jsx` to TypeScript 
+   verbatim. The inline `Icon` component is fine to swap for 
+   `lucide-react` icons of equivalent semantics — the SVG paths are 
+   ~lucide already.
+5. **Screens.** Treat `qs-screens.jsx` as the layout source of truth. 
+   The Lovable React Router screens should render the same structure, 
+   with real Supabase data wiring instead of the hardcoded sample data.
+6. **Russian labels.** The design uses **lowercase** Russian category 
+   labels (`утро`, `память`, `работа`, …). Keep this — it's the 
+   product's typographic voice. Don't capitalise.
+7. **Dark theme.** `[data-theme="dark"]` selector flips the palette. 
+   Auto-detect via `prefers-color-scheme` and persist user choice in 
+   localStorage.
+
+Do **not** drop the design files (`design/`) into the production 
+build — they're a reference. Only `tokens.css` ships, plus the 
+TypeScript ports of the components/screens.
+
+The `ios-frame.jsx`, `design-canvas.jsx`, and `tweaks-panel.jsx` files 
+are design-canvas helpers and **must NOT** appear in the production app.
 
 # 10. Hard "do NOT" list
 
