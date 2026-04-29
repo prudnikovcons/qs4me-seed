@@ -9,13 +9,17 @@
 **Шаг 1.** Запушь этот репо на GitHub (или создай публичный gist), чтобы у `seed.sql` и `questions.v2.json` появились raw-URL'ы. Подойдёт любой публичный URL, главное — прямая ссылка на сырой файл. После пуша сохрани два URL:
 
 ```
-SEED_SQL_URL  = https://raw.githubusercontent.com/<you>/<repo>/main/question-taxonomy/exports/lovable/seed.sql
-QUESTIONS_URL = https://raw.githubusercontent.com/<you>/<repo>/main/question-taxonomy/exports/lovable/questions.v2.json
+SEED_SQL_URL    = https://raw.githubusercontent.com/prudnikovcons/qs4me-seed/main/question-taxonomy/exports/lovable/seed.sql
+QUESTIONS_URL   = https://raw.githubusercontent.com/prudnikovcons/qs4me-seed/main/question-taxonomy/exports/lovable/questions.v2.json
+CATEGORIES_URL  = https://raw.githubusercontent.com/prudnikovcons/qs4me-seed/main/question-taxonomy/exports/lovable/categories.json
+PLAYLISTS_URL   = https://raw.githubusercontent.com/prudnikovcons/qs4me-seed/main/question-taxonomy/exports/lovable/playlists.json
 ```
 
 **Шаг 2.** Создай новый Lovable-проект. Включи **Lovable Cloud** (или подключи Supabase).
 
 **Шаг 3.** Замени два плейсхолдера в промте ниже на свои URL'ы (`<SEED_SQL_URL>`, `<QUESTIONS_URL>`).
+
+> **Уже сделано.** Репо опубликован на https://github.com/prudnikovcons/qs4me-seed, ссылки внутри промта подставлены ниже.
 
 После этого вставь весь блок ниже одним сообщением.
 
@@ -286,15 +290,17 @@ for each row when (new.user_id is not null) execute function on_feed_event();
 After creating the schema, import the seed:
 
 **Path A — most reliable:** prompt the user to open Supabase SQL editor 
-and paste the contents of `<SEED_SQL_URL>` (it's idempotent, ON CONFLICT 
-DO NOTHING).
+and paste the contents of 
+https://raw.githubusercontent.com/prudnikovcons/qs4me-seed/main/question-taxonomy/exports/lovable/seed.sql 
+(it's idempotent, ON CONFLICT DO NOTHING).
 
 **Path B — automated:** create an edge function `import-seed` that 
-fetches `<QUESTIONS_URL>` (3 MB JSON), upserts in chunks of 200 rows, 
-and reports progress. Categories and playlists are inlined into the 
-edge function (small enough to embed directly). When asked, fetch 
-`https://raw.githubusercontent.com/<USER>/<REPO>/main/question-taxonomy/exports/lovable/categories.json` 
-and `…/playlists.json` for those two tables.
+fetches the JSON files below, upserts in chunks of 200 rows, and 
+reports progress:
+
+- categories: https://raw.githubusercontent.com/prudnikovcons/qs4me-seed/main/question-taxonomy/exports/lovable/categories.json
+- playlists:  https://raw.githubusercontent.com/prudnikovcons/qs4me-seed/main/question-taxonomy/exports/lovable/playlists.json
+- questions:  https://raw.githubusercontent.com/prudnikovcons/qs4me-seed/main/question-taxonomy/exports/lovable/questions.v2.json (3 MB)
 
 Until import finishes, the feed shows a skeleton with copy "Готовим вопросы…".
 
@@ -459,16 +465,16 @@ absurd coral-2 oklch(0.65 0.18 20).
 - 0 info blocks. 0 marketing pages. 0 frontend secrets.
 
 Build it now. Start with: schema + RLS + RPC + a single Edge Function 
-that fetches `<QUESTIONS_URL>` (3 MB JSON) and `<CATEGORIES_URL>` and 
-`<PLAYLISTS_URL>` and bulk-upserts. Then `<FeedView>` with the 
-QuestionCard. Then `<Library>`. Then auth+profile. Then `/me`. 
-Then comments/moderation last.
+that fetches the three JSON URLs from section 2 and bulk-upserts 
+categories, playlists, then questions in chunks of 200. Then 
+`<FeedView>` with the QuestionCard. Then `<Library>`. Then 
+auth+profile. Then `/me`. Then comments/moderation last.
 
-Replace these placeholders with my URLs:
-SEED_SQL_URL = <SEED_SQL_URL>
-QUESTIONS_URL = <QUESTIONS_URL>
-CATEGORIES_URL = <CATEGORIES_URL>
-PLAYLISTS_URL = <PLAYLISTS_URL>
+Seed source URLs (already-resolved, public, raw):
+- https://raw.githubusercontent.com/prudnikovcons/qs4me-seed/main/question-taxonomy/exports/lovable/seed.sql
+- https://raw.githubusercontent.com/prudnikovcons/qs4me-seed/main/question-taxonomy/exports/lovable/questions.v2.json
+- https://raw.githubusercontent.com/prudnikovcons/qs4me-seed/main/question-taxonomy/exports/lovable/categories.json
+- https://raw.githubusercontent.com/prudnikovcons/qs4me-seed/main/question-taxonomy/exports/lovable/playlists.json
 
 === END ===
 ```
